@@ -131,4 +131,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 dotenv.load_dotenv()
 # OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-OPENAI_API_KEY = "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"
