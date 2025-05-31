@@ -1,0 +1,154 @@
+{% extends 'code_assistant/base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="right-panel signup-panel">
+    <div class="panel-header">Create Account</div>
+    <form method="POST" class="signup-form">
+        {% csrf_token %}
+        <div class="form-fields">
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                <div class="help-text">{{ field.help_text }}</div>
+                {% endif %}
+                {% if field.errors %}
+                <div class="field-errors">
+                    {% for error in field.errors %}
+                    <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="submit-button">Create Account</button>
+        <p class="login-link">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+    </form>
+</div>
+
+<style>
+.signup-panel {
+    max-width: 500px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.form-group input {
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+}
+
+.help-text {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.field-errors {
+    margin-top: 5px;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 13px;
+    display: block;
+}
+
+.submit-button {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.login-link {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.login-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .form-group input {
+        background-color: var(--panel-bg);
+        color: var(--text-color);
+    }
+    
+    .form-group input::placeholder {
+        color: #666;
+    }
+    
+    .help-text {
+        color: #999;
+    }
+}
+
+@media (max-width: 768px) {
+    .signup-panel {
+        max-width: 100%;
+    }
+    
+    .form-group input {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-fields {
+        gap: 15px;
+    }
+    
+    .help-text {
+        font-size: 12px;
+    }
+}
+</style>
+{% endblock %}

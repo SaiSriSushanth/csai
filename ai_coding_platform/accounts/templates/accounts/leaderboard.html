@@ -1,0 +1,122 @@
+{% extends 'code_assistant/base.html' %}
+{% block title %}Leaderboard{% endblock %}
+{% block content %}
+<div class="right-panel leaderboard">
+    <div class="panel-header">Leaderboard</div>
+    <div class="leaderboard-table-container">
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Points</th>
+                    <th>Streak</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for profile in profiles %}
+                <tr>
+                    <td class="rank">{{ forloop.counter }}</td>
+                    <td class="username">{{ profile.user.username }}</td>
+                    <td class="points">{{ profile.points }}</td>
+                    <td class="streak">{{ profile.streak }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+.leaderboard {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.leaderboard-table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    background: var(--bg-color);
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: var(--panel-bg);
+}
+
+.leaderboard-table thead {
+    background: var(--primary-color);
+    color: white;
+}
+
+.leaderboard-table th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.leaderboard-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.leaderboard-table tbody tr {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.leaderboard-table tbody tr:hover {
+    background-color: var(--bg-color);
+    transform: translateX(5px);
+}
+
+.leaderboard-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.rank {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Top 3 ranks styling */
+.leaderboard-table tbody tr:nth-child(1) .rank {
+    color: gold;
+}
+
+.leaderboard-table tbody tr:nth-child(2) .rank {
+    color: silver;
+}
+
+.leaderboard-table tbody tr:nth-child(3) .rank {
+    color: #cd7f32; /* bronze */
+}
+
+.points, .streak {
+    font-family: 'Fira Code', monospace;
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .leaderboard-table {
+        font-size: 13px;
+    }
+    
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .leaderboard-table {
+        font-size: 12px;
+    }
+    
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 8px 10px;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'code_assistant/base.html' %}
+{% block title %}Profile Dashboard{% endblock %}
+{% block content %}
+<div class="right-panel profile-dashboard">
+    <div class="panel-header">Profile Dashboard</div>
+    <div class="profile-info">
+        <div class="info-item">
+            <span class="info-label">Username:</span>
+            <span class="info-value">{{ request.user.username }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Email:</span>
+            <span class="info-value">{{ request.user.email }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Total Points:</span>
+            <span class="info-value">{{ profile.points }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Current Streak:</span>
+            <span class="info-value">{{ profile.streak }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">XP:</span>
+            <span class="info-value">{{ profile.xp }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Level:</span>
+            <span class="info-value">{{ profile.level }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Coins:</span>
+            <span class="info-value">{{ profile.coins}}</span>
+        </div>
+    </div>
+    <a href="{% url 'leaderboard' %}" class="leaderboard-link">View Leaderboard</a>
+</div>
+
+<style>
+.profile-dashboard {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--bg-color);
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+}
+
+.info-item:hover {
+    transform: translateX(5px);
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.info-value {
+    color: var(--text-color);
+}
+
+.leaderboard-link {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.leaderboard-link:hover {
+    background: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.leaderboard-link:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .info-item {
+        padding: 8px;
+    }
+    
+    .leaderboard-link {
+        width: 100%;
+        padding: 10px 20px;
+    }
+}
+</style>
+{% endblock %}

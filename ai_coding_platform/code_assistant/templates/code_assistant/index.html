@@ -1,0 +1,52 @@
+{% extends 'code_assistant/base.html' %}
+{% block title %}CodeSavant - Home{% endblock %}
+{% block content %}
+        {% comment %} <div class="panel">
+            <h3>Select a Difficulty to Fetch a Question</h3>
+            <select id="difficulty-select">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+            </select>
+            <button id="fetch-question-btn">Fetch Question</button>
+            <div id="question-display" class="question-display" style="margin-top: 15px;"></div>
+        </div> {% endcomment %}
+        <div class="left-panel">
+            <h3 class="panel-header">Questions</h3>
+            <div class="difficulty-section">
+                <select id="difficulty-select" style="
+                    padding: 10px;
+                    border: 2px solid var(--border-color);
+                    border-radius: 6px;
+                    font-size: 14px;
+                    width: 100%;
+                    margin-bottom: 15px;
+                    background: var(--panel-bg);
+                    color: var(--text-color);
+                    transition: border-color 0.3s ease;
+                ">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <button id="fetch-question-btn">Fetch Question</button>
+            </div>
+            <div id="question-display" class="output" style="margin-top: 15px; min-height: 100px;"></div>
+        </div>
+        <div class="left-panel">
+            <h3 class="panel-header">Code Editor</h3>
+            <textarea id="code-editor" placeholder="Write your Python code here..."></textarea>
+            <button id="run-code-btn">Run Code</button>
+            <div class="loading"></div>
+            <div class="output" id="code-output"></div>
+        </div>
+
+        <div class="right-panel">
+            <h3 class="panel-header">Ask CodeSavant</h3>
+            <button id="ask-assistant-btn">Ask</button>
+            <div class="loading"></div>
+            <div class="assistant-response" id="assistant-response"></div>
+        </div>
+    </div>
+{% endblock %}
+   
